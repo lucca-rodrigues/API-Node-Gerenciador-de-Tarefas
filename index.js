@@ -2,19 +2,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const { listarTarefas, listarTarefasId } = require('./controllers/listarTarefas.js')
+const { listarTarefas, listarTarefasId, cadastrarTarefa } = require('./controllers/listarTarefas.js')
 
 const app = express();
 const port = 3333;
 
-// // List
+app.use(express.static('public'));
+app.use(cors());
+app.use(bodyParser.json());
+
+// List
 app.get('/tarefas', listarTarefas);
 // List ID
 app.get('/tarefas/:id', listarTarefasId);
 // Create
-// app.post('/tarefa/:id', (req, res) => {
-//     res.status(501).json({error: 'Não implementado'})
-// });
+app.post('/tarefas', cadastrarTarefa);
 // // Update
 // app.put('/tarefas/:id', (req, res) => {
 //     res.status(501).json({error: 'Não implementado'})
@@ -28,4 +30,4 @@ app.get('/tarefas/:id', listarTarefasId);
 //     res.status(501).json({error: 'Não implementado'})
 // });
 
-app.listen(port, ()=> console.log(`servidor funcionando na porta ${port}`));
+app.listen(port, () => console.log(`servidor funcionando na porta ${port}`));
