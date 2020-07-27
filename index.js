@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const { listarTarefas, listarTarefasId, cadastrarTarefa } = require('./controllers/listarTarefas.js')
+const { listarTarefas, listarTarefasId, cadastrarTarefa, atualizarTarefa } = require('./controllers/listarTarefas.js')
 
 const app = express();
 const port = 3333;
@@ -18,9 +18,7 @@ app.get('/tarefas/:id', listarTarefasId);
 // Create
 app.post('/tarefas', cadastrarTarefa);
 // // Update
-// app.put('/tarefas/:id', (req, res) => {
-//     res.status(501).json({error: 'Não implementado'})
-// });
+app.put('/tarefas/:id', atualizarTarefa);
 // // Delete ID
 // app.delete('/tarefas/:id', (req, res) => {
 //     res.status(501).json({error: 'Não implementado'})
